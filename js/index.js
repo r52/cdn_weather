@@ -4,11 +4,11 @@ $(document).ready(function() {
 });
 
 function getWeather() {
-    var iconurl = 'http://www.weather.gc.ca/weathericons/';
+    var iconurl = 'https://www.weather.gc.ca/weathericons/';
 
     $.ajax({
         crossDomain: true,
-        url: 'http://dd.weather.gc.ca/citypage_weather/xml/' + ProvCode + '/' + SiteNameCode + '_' + lang +'.xml',
+        url: 'https://dd.weather.gc.ca/citypage_weather/xml/' + ProvCode + '/' + SiteNameCode + '_' + lang +'.xml',
         type: 'GET',
         dataType: "xml",
         success: function(data) {
