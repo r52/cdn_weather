@@ -1,6 +1,10 @@
-$(document).ready(function() {
-    getWeather();
-    setInterval("getWeather()", 900000);
+$(document).ready(function () {
+    if (ProvCode && SiteNameCode && lang) {
+        getWeather();
+        setInterval("getWeather()", 900000);
+    } else {
+        console.warn("cdn_weather: Options not set. Please configure js/options.js and reload this widget.")
+    }
 });
 
 function getWeather() {
@@ -8,10 +12,10 @@ function getWeather() {
 
     $.ajax({
         crossDomain: true,
-        url: 'https://dd.weather.gc.ca/citypage_weather/xml/' + ProvCode + '/' + SiteNameCode + '_' + lang +'.xml',
+        url: 'https://dd.weather.gc.ca/citypage_weather/xml/' + ProvCode + '/' + SiteNameCode + '_' + lang + '.xml',
         type: 'GET',
         dataType: "xml",
-        success: function(data) {
+        success: function (data) {
             $xml = $(data);
 
             // parse current condition
@@ -24,7 +28,7 @@ function getWeather() {
             // parse forecasts
             var forecasts = [];
 
-            $xml.find('forecastGroup > forecast').each(function(index) {
+            $xml.find('forecastGroup > forecast').each(function (index) {
                 if (index < 3) {
                     var cast = new Object();
                     cast.time = $(this).find('period').text();
@@ -58,7 +62,7 @@ function getWeather() {
 
             $('div.issue > span.date').text($issued);
         },
-        error: function(jqXHR, textStatus, errorThrown) {
+        error: function (jqXHR, textStatus, errorThrown) {
             $('div.issue > span.date').text("Error retrieving xml");
         }
     });
