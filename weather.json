@@ -1,8 +1,9 @@
 {
-    "name": "Canadian Weather",
-    "width": 550,
-    "height": 300,
-    "startFile": "index.html",
-    "transparentBg": true,
-    "remoteAccess": true
+  "name": "Canadian Weather",
+  "width": 550,
+  "height": 300,
+  "startFile": "index.html",
+  "transparentBg": true,
+  "dataserver": true,
+  "remoteAccess": true
 }
